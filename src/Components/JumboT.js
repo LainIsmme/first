@@ -6,51 +6,53 @@ import {
 } from "react-bootstrap";
 import dLox from "../img/Lox.jpg"
 
-const textP = [
-  "Эту сумку мне муж купил\nЭти Rolex'ы муж купил\nКольцо с бриллиантом мне муж купил\nМуж купил, мне муж купил",
-  "Не завожу подруг, но за деньги — да\nЯ не делаю фиты даже за деньги, да\nИ я подумаю потом, но скажу сразу \"да\"\nЗа деньги — да, за деньги — да"
-];
+
+const jumboData = [{
+  text: "Эту сумку мне муж купил\nЭти Rolex'ы муж купил\nКольцо с бриллиантом мне муж купил\nМуж купил, мне муж купил",
+  img: dLox
+},
+
+  {
+    text: "Эту сумку мне муж купил\nЭти Rolex'ы муж купил\nКольцо с бриллиантом мне муж купил\nМуж купил, мне муж купил",
+    img: dLox
+  }]
 
 
 function Jumbo () {
   return (
     <Container>
-      <Row>
-        <Col
-          md={ { span: 6, order: 1 }}
-          xs={ { span: 6, order: 1 }}
-          className="img-fluid"
-          >
-          <p>
-            {textP[0]}
-          </p>
+      {jumboData.map((item, i) => {
+        return (i + 1) % 2 === 0 ?
+        <Row>
+          <Col
+            className="img-fluid"
+            >
+            <p>
+              {item.text}
+            </p>
+          </Col>
+          <Col
+            className="img-Column"
+            >
+            <img src={item.img} alt="Dima Lox" className="img-fluid" />
+        </Col>
+      </Row>
+      :
+        <Row>
+          <Col
+            className="img-Column"
+            >
+            <img src={item.img} alt="Dima Lox" className="img-fluid" />
         </Col>
         <Col
-          md={ { span: 6, order: 2 }}
-          xs={ { span: 6, order: 2 }}
-          className="img-Column1"
+          className="text-Column2"
           >
-          <img src={dLox} alt="Dima Lox" className="img-fluid" />
-      </Col>
-    </Row>
-    <Row>
-      <Col
-        md={ { span: 6, order: 1 }}
-        xs={ { span: 6, order: 1 }}
-        className="img-Column2"
-        >
-        <img src={dLox} alt="Dima Lox" className="img-fluid" />
-    </Col>
-    <Col
-      md={ { span: 6, order: 2 }}
-      xs={ { span: 6, order: 2 }}
-      className="text-Column2"
-      >
-      <p>
-        {textP[1]}
-      </p>
-    </Col>
-  </Row>
+          <p>
+            {item.text}
+          </p>
+        </Col>
+      </Row>;
+    })}
 </Container>
 )
 }
